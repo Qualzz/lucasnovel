@@ -1,0 +1,67 @@
+# LISTE COMPLÈTE DES PROMPTS - Visual Novel Louise Carmen
+
+## STEP 1 - Le Départ
+1.png
+2.png
+
+## STEP 2A - Gare (4 destinations)
+3.png
+4.png
+5.png
+6.png
+
+## STEP 2B - Aéroport (12 destinations)
+7.png
+8.png
+9.png
+10.png
+11.png
+12.png
+13.png
+14.png
+15.png
+16.png
+17.png
+18.png
+
+## STEP 3 - Excuses (11 prompts)
+19.png
+20.png
+21.png
+22.png
+23.png
+24.png
+25.png
+26.png
+27.png
+28.png
+29.png
+
+## STEP 4 - Paris Activités
+30.png
+31.png
+
+## STEP 5A - Repas
+32.png
+
+## STEP 5B - Musée
+33.png
+
+## STEP 6 - Transport
+34.png
+35.png
+36.png
+
+## STEP 7 - Croisement
+37.png
+38.png
+
+## STEP 8 - Boutiques
+39.png
+40.png
+
+## STEP 9 - Fausse Piste
+41.png
+
+## STEP 10 - Louise Carmen (FIN)
+42.png

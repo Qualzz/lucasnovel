@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'aventure commence !</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="game-container">
+        <div id="background-layer" class="bg-layer"></div>
+        <div id="background-layer-next" class="bg-layer" aria-hidden="true"></div>
+        <div id="choice-bg-layer" aria-hidden="true"></div>
+        
+        <div id="ui-layer">
+            <h1 id="scene-title">Titre de la scène</h1>
+            
+            <div id="main-content">
+                <div id="text-box">
+                    <p id="narrative-text">Texte narratif...</p>
+                </div>
+                
+                <div id="choices-container">
+                    <!-- Choices will be injected here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
