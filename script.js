@@ -244,6 +244,70 @@ const STEP_BACKGROUNDS = {
 
 const preloadedUrls = new Set();
 let bgSwapTimeoutId = null;
+let choiceHoverEnabled = false;
+
+function setChoiceBgHover(activeIndex) {
+    if (!choiceHoverEnabled) return;
+    const layer = document.getElementById("choice-bg-layer");
+    if (!layer) return;
+    const segments = Array.from(layer.querySelectorAll(".choice-bg-segment"));
+    if (segments.length === 0) return;
+
+    const index = Number(activeIndex);
+    if (!Number.isFinite(index) || index < 0 || index >= segments.length) return;
+
+    segments.forEach((segment, segmentIndex) => {
+        const isActive = segmentIndex === index;
+        segment.classList.toggle("is-active", isActive);
+        segment.classList.toggle("is-dimmed", !isActive);
+    });
+}
+
+function clearChoiceBgHover() {
+    const layer = document.getElementById("choice-bg-layer");
+    if (!layer) return;
+    layer.querySelectorAll(".choice-bg-segment.is-active, .choice-bg-segment.is-dimmed").forEach((segment) => {
+        segment.classList.remove("is-active", "is-dimmed");
+    });
+}
+
+function setupChoiceHoverHandlers() {
+    const choicesContainer = document.getElementById("choices-container");
+    if (!choicesContainer) return;
+
+    choicesContainer.addEventListener("pointerover", (event) => {
+        if (!choiceHoverEnabled) return;
+        const btn = event.target?.closest?.(".choice-btn");
+        if (!btn || !choicesContainer.contains(btn)) return;
+        setChoiceBgHover(btn.dataset.choiceIndex);
+    });
+
+    choicesContainer.addEventListener("pointerdown", (event) => {
+        if (!choiceHoverEnabled) return;
+        const btn = event.target?.closest?.(".choice-btn");
+        if (!btn || !choicesContainer.contains(btn)) return;
+        setChoiceBgHover(btn.dataset.choiceIndex);
+    });
+
+    choicesContainer.addEventListener("pointerleave", () => {
+        if (!choiceHoverEnabled) return;
+        clearChoiceBgHover();
+    });
+
+    choicesContainer.addEventListener("focusin", (event) => {
+        if (!choiceHoverEnabled) return;
+        const btn = event.target?.closest?.(".choice-btn");
+        if (!btn || !choicesContainer.contains(btn)) return;
+        setChoiceBgHover(btn.dataset.choiceIndex);
+    });
+
+    choicesContainer.addEventListener("focusout", (event) => {
+        if (!choiceHoverEnabled) return;
+        const nextTarget = event.relatedTarget;
+        if (nextTarget && choicesContainer.contains(nextTarget)) return;
+        clearChoiceBgHover();
+    });
+}
 
 function clamp01(value) {
     return Math.max(0, Math.min(1, value));
@@ -354,6 +418,7 @@ function showChoiceSplit(urls) {
         const url = urls[i];
         const segment = document.createElement("div");
         segment.className = "choice-bg-segment";
+        segment.dataset.choiceIndex = String(i);
         segment.style.backgroundImage = `url('${url}')`;
 
         const leftTop = boundaryTop(i);
@@ -419,10 +484,13 @@ function renderStep(stepId) {
     } else {
         clearChoiceSplit();
     }
+    choiceHoverEnabled = Boolean(hasPerChoiceBgs);
+    clearChoiceBgHover();
 
     choices.forEach((choice, choiceIndex) => {
         const btn = document.createElement("button");
         btn.className = "choice-btn";
+        btn.dataset.choiceIndex = String(choiceIndex);
         const choiceLabel = stripEmojis(choice.text);
         btn.textContent = choiceLabel;
         if (choiceLabel.toLowerCase() === "continuer") {
@@ -466,4 +534,5 @@ function handleChoice(choice) {
 }
 
 // Start
+setupChoiceHoverHandlers();
 renderStep("1");

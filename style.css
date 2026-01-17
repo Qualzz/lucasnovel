@@ -13,6 +13,7 @@
     --dialogue-bg-core: rgba(0, 0, 0, 0.92);
     --dialogue-bg-edge: rgba(0, 0, 0, 0);
     --dialogue-shadow: rgba(0, 0, 0, 0.65);
+    --dialogue-choices-gap: 120px;
 }
 
 * {
@@ -60,13 +61,7 @@ body, html {
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.4s ease-in-out;
-}
-
-#choice-bg-layer::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.25);
+    overflow: hidden;
 }
 
 .choice-bg-segment {
@@ -75,6 +70,33 @@ body, html {
     background-size: cover;
     background-position: center;
     filter: saturate(1.05) contrast(1.05);
+    transform: scale(1);
+    transform-origin: center;
+    transition: transform 180ms ease, filter 180ms ease;
+    will-change: transform, filter;
+}
+
+.choice-bg-segment::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    opacity: 0;
+    transition: opacity 180ms ease;
+}
+
+.choice-bg-segment.is-dimmed::after {
+    opacity: 1;
+}
+
+.choice-bg-segment.is-dimmed {
+    filter: saturate(0.95) contrast(0.95) brightness(0.78);
+}
+
+.choice-bg-segment.is-active {
+    z-index: 2;
+    transform: scale(1.035);
+    filter: saturate(1.12) contrast(1.08);
 }
 
 #ui-layer {
@@ -88,7 +110,7 @@ body, html {
     flex-direction: column;
     justify-content: flex-end; /* Text box at bottom */
     padding: 2rem;
-    background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.4) 100%);
+    background: none;
 }
 
 #scene-title {
@@ -147,7 +169,7 @@ body, html {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: var(--dialogue-choices-gap);
     padding-bottom: 2rem;
 }
 
@@ -289,6 +311,9 @@ body, html {
 
 /* Responsive */
 @media (max-width: 768px) {
+    :root {
+        --dialogue-choices-gap: 56px;
+    }
     #scene-title {
         font-size: 1.8rem;
     }
