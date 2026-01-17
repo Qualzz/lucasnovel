@@ -196,7 +196,7 @@ const storyData = {
         ]
     },
     "10": {
-        title: "Bienvenue chez Louise Carmen",
+        title: "Une Atmosphère Chaleureuse",
         text: "Tu pousses la porte de la boutique élégante. Une douce mélodie de carillon t'accueille tandis qu'une atmosphère chaleureuse t'enveloppe. Les murs sont ornés de créations raffinées, chaque détail respire l'artisanat et la passion. Une voix bienveillante s'élève...\n\n\"Bienvenue chez Louise Carmen ! Il est temps de choisir votre carnet...\"",
         effect: "sparkle",
         choices: [
