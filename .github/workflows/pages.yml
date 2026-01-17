@@ -32,7 +32,8 @@ jobs:
           set -euo pipefail
           rm -rf dist
           mkdir -p dist/images
-          cp index.html style.css script.js bg.png dist/
+          cp index.html style.css script.js dist/
+          cp bg.png dist/ 2>/dev/null || true
           cp -R images/. dist/images/
           touch dist/.nojekyll
 
