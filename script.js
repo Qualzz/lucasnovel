@@ -2,7 +2,7 @@
 const storyData = {
     "1": {
         title: "L'Aventure Commence",
-        text: "Le jour tant attendu est enfin arrivé. Tu as un rendez-vous important à Paris, et il est temps de choisir comment t'y rendre. Le monde s'offre à toi... ou presque.",
+        text: "Le jour tant attendu est enfin arrivé. Une destination t'attend, un rendez-vous que tu ne peux pas manquer. Il est temps de choisir comment t'y rendre.",
         choices: [
             { text: "🚂 Gare", target: "2A", action: (s) => { s.origin = "gare"; } },
             { text: "✈️ Aéroport", target: "2B", action: (s) => { s.origin = "aeroport"; } }
